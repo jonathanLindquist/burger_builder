@@ -35,15 +35,18 @@ class BurgerBuilder extends Component {
 	};
 
 	componentDidMount() {
-		axios.get('https://burger-builder-backend-159db.firebaseio.com/ingredients.json').then((response) => {
-			this.setState({
-				ingredients: response.data
-			});
-		}).catch(error => {
-			this.setState({
-				error: true
+		axios
+			.get('https://burger-builder-backend-159db.firebaseio.com/ingredients.json')
+			.then((response) => {
+				this.setState({
+					ingredients: response.data
+				});
 			})
-		});
+			.catch((error) => {
+				this.setState({
+					error: true
+				});
+			});
 	}
 
 	updatePurchaseState = (ingredients) => {
@@ -158,6 +161,7 @@ class BurgerBuilder extends Component {
 		const disabledInfo = {
 			...this.state.ingredients
 		};
+
 		for (let key in disabledInfo) {
 			disabledInfo[key] = disabledInfo[key] <= 0;
 		}
